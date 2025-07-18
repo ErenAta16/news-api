@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, List
 
 # Modül importları
-from rss_collector import FinalRSSCollector
+from hybrid_collector import HybridNewsCollector
 from text_processor import TextProcessor
 from advanced_analytics import AdvancedAnalytics
 from cooccurrence_analyzer import CooccurrenceAnalyzer
@@ -26,7 +26,7 @@ class EnhancedNewsAnalysis:
     
     def __init__(self):
         """Analiz sistemini başlat"""
-        self.rss_collector = FinalRSSCollector()
+        self.hybrid_collector = HybridNewsCollector()
         self.text_processor = TextProcessor()
         self.advanced_analytics = AdvancedAnalytics()
         self.cooccurrence_analyzer = CooccurrenceAnalyzer()
@@ -43,9 +43,9 @@ class EnhancedNewsAnalysis:
         logger.info("=" * 60)
         
         try:
-            # 1. RSS'den haber toplama
-            logger.info("📡 RSS kaynaklarından haber toplanıyor...")
-            news_data = await self.rss_collector.collect_all_feeds()
+            # 1. Hibrit haber toplama (RSS + API)
+            logger.info("🚀 Hibrit haber toplama başlatılıyor...")
+            news_data = await self.hybrid_collector.collect_all_news()
             
             if not news_data:
                 logger.error("❌ Hiç haber toplanamadı!")
@@ -54,8 +54,8 @@ class EnhancedNewsAnalysis:
             logger.info(f"✅ {len(news_data)} haber toplandı")
             
             # 2. İstatistikleri hesapla
-            stats = self.rss_collector.get_statistics(news_data)
-            logger.info(f"📊 İstatistikler: {stats['total_news']} haber, {len(stats['category_distribution'])} kategori")
+            stats = self.hybrid_collector.get_statistics(news_data)
+            logger.info(f"📊 İstatistikler: {stats['total_news']} haber (RSS: {stats['rss_news']}, API: {stats['API Haberleri']})")
             
             # 3. Metin işleme
             logger.info("🔤 Metin işleme başlatılıyor...")
@@ -84,11 +84,13 @@ class EnhancedNewsAnalysis:
             # 7. Metadata oluştur
             metadata = {
                 'total_news': len(news_data),
+                'rss_news': stats['rss_news'],
+                'API Haberleri': stats['API Haberleri'],
                 'sources': list(stats['source_distribution'].keys()),
                 'categories': list(stats['category_distribution'].keys()),
                 'collection_time': datetime.now().isoformat(),
-                'analysis_version': '2.0',
-                'rss_sources_used': len(self.rss_collector.working_rss_sources)
+                'analysis_version': '3.0',
+                'collection_type': 'hybrid'
             }
             
             # 8. Sonuçları birleştir
