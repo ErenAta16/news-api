@@ -28,18 +28,18 @@ class FinalRSSCollector:
         
         # Test edilmiş ve çalışan RSS kaynakları
         self.working_rss_sources = {
-            'gundem': [
+            'Gündem': [
                 "https://www.hurriyet.com.tr/rss/anasayfa",
                 "https://www.aa.com.tr/tr/rss/default?cat=guncel",
                 "https://www.bbc.com/turkce/index.xml"
             ],
-            'ekonomi': [
+            'Ekonomi': [
                 "https://www.aa.com.tr/tr/rss/default?cat=ekonomi"
             ],
-            'spor': [
+            'Spor': [
                 "https://www.aa.com.tr/tr/rss/default?cat=spor"
             ],
-            'dunya': [
+            'Dünya': [
                 "https://www.aa.com.tr/tr/rss/default?cat=dunya",
                 "https://www.bbc.com/turkce/index.xml"
             ]
@@ -52,7 +52,7 @@ class FinalRSSCollector:
             "https://www.aa.com.tr/tr/rss/default?cat=guncel"
         ]
     
-    def get_news_from_rss(self, rss_url: str, category: str = 'gundem') -> List[Dict]:
+    def get_news_from_rss(self, rss_url: str, category: str = 'Gündem') -> List[Dict]:
         """
         Belirtilen RSS URL'sinden haberleri çeker
         
@@ -202,7 +202,7 @@ class FinalRSSCollector:
             logger.info("Ana kaynaklardan veri toplanamadı, alternatif kaynaklar deneniyor...")
             for url in self.alternative_sources:
                 try:
-                    news = self.get_news_from_rss(url, 'gundem')
+                    news = self.get_news_from_rss(url, 'Gündem')
                     all_news.extend(news)
                     if news:
                         logger.info(f"Alternatif kaynaktan {len(news)} haber toplandı: {url}")
