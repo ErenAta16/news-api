@@ -1,150 +1,265 @@
-# 📰 Haber Analizi Sistemi
+# 📰 News Analysis System
 
-Gelişmiş RSS tabanlı haber analizi ve görselleştirme platformu.
+Advanced RSS-based news analysis and visualization platform with hybrid data collection (RSS + API).
 
-## 🚀 Hızlı Başlangıç
+## 🚀 Quick Start
 
-### Ana Menü
+### Main Menu
 ```bash
 quick_start.bat
 ```
 
-### Direkt Başlatma
+### Direct Launch
 ```bash
-# Tam analiz çalıştır
+# Run full analysis
 start_analysis.bat
 
-# Dashboard başlat
+# Launch dashboard
 start_dashboard.bat
 
-# Otomatik zamanlayıcı
+# Automatic scheduler
 start_scheduler.bat
 
-# Hızlı başlat
+# Quick start
 quick_start.bat
 ```
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 
 ```
 EntegreOtomasyon/
 ├── src/
-│   ├── main.py                 # Ana analiz sistemi
+│   ├── main.py                 # Main analysis system
 │   ├── dashboard.py            # Streamlit dashboard
-│   ├── rss_collector.py        # RSS veri toplayıcı
-│   ├── database.py             # Veritabanı yönetimi
-│   ├── text_processor.py       # Metin işleme
-│   ├── advanced_analytics.py   # Gelişmiş analizler
-│   ├── cooccurrence_analyzer.py # Co-occurrence analizi
-│   └── news_database.db        # SQLite veritabanı
-├── quick_start.bat             # Ana menü
-├── start_analysis.bat          # Analiz başlatıcı
-├── start_dashboard.bat         # Dashboard başlatıcı
-├── start_scheduler.bat         # Otomatik zamanlayıcı
-└── requirements.txt            # Python bağımlılıkları
+│   ├── rss_collector.py        # RSS data collector
+│   ├── api_collector.py        # API data collector
+│   ├── hybrid_collector.py     # Hybrid collector (RSS + API)
+│   ├── database.py             # Database management
+│   ├── text_processor.py       # Text processing
+│   ├── advanced_analytics.py   # Advanced analytics
+│   ├── cooccurrence_analyzer.py # Co-occurrence analysis
+│   ├── topic_modeling.py       # Topic modeling
+│   ├── similarity_detector.py  # Similarity detection
+│   ├── network_analyzer.py     # Network analysis
+│   ├── word_analysis.py        # Word analysis
+│   └── scheduler.py            # Automatic scheduler
+├── quick_start.bat             # Main menu
+├── start_analysis.bat          # Analysis launcher
+├── start_dashboard.bat         # Dashboard launcher
+├── start_scheduler.bat         # Automatic scheduler
+├── requirements.txt            # Python dependencies
+├── .env.example               # Environment variables example
+└── README.md                  # Documentation
 ```
 
-## 🎯 Özellikler
+## 🎯 Features
 
-### 📡 RSS Veri Toplama
-- **207+ haber** otomatik toplama
-- **4 kategori**: gündem, ekonomi, spor, dünya
-- **3 kaynak**: Hürriyet, Anadolu Ajansı, BBC Türkçe
-- Asenkron veri çekme
-- **⏰ Otomatik zamanlayıcı**: Her saat başı toplama
-- **💾 Veri kaydetme**: Ham veriler + analiz sonuçları
+### 📡 Hybrid Data Collection
+- **RSS Sources**: Hürriyet, Milliyet, Habertürk, Anadolu Ajansı
+- **API Sources**: NewsAPI integration
+- **200+ news** automatic collection
+- **4 categories**: gündem, ekonomi, spor, dünya
+- **Asynchronous data fetching**
+- **⏰ Automatic scheduler**: Hourly collection
+- **💾 Data storage**: Raw data + analysis results
 
-### 🔤 Metin Analizi
-- **6073 toplam kelime** işleme
-- **3393 benzersiz kelime** tespiti
-- Stopword temizliği
-- Kelime frekansı analizi
+### 🔤 Text Analysis
+- **6000+ total words** processing
+- **3000+ unique words** detection
+- **Stopword cleaning**
+- **Word frequency analysis**
+- **Topic modeling with LDA**
+- **Co-occurrence analysis**
 
-### 📊 Görselleştirme
-- Kelime sıklığı grafikleri
-- Kategori dağılımı
-- Kaynak karşılaştırması
-- Co-occurrence ağları
-- Trend analizleri
+### 📊 Visualization
+- **Word frequency charts**
+- **Category distribution**
+- **Source comparison**
+- **Co-occurrence networks**
+- **Trend analysis**
+- **Interactive Streamlit dashboard**
 
-## 🛠️ Kurulum
+### 🛡️ Security Features
+- **Environment variables** for API keys
+- **Secure configuration** management
+- **Gitignore** for sensitive files
 
-1. **Python bağımlılıklarını yükleyin:**
+## 🛠️ Installation
+
+1. **Install Python dependencies:**
 ```bash
 pip install -r requirements.txt
 ```
 
-2. **Environment variables ayarlayın:**
+2. **Set up environment variables:**
 ```bash
-# .env dosyası oluşturun
+# Create .env file
 cp .env.example .env
 
-# API key'inizi .env dosyasına ekleyin
+# Add your API key to .env file
 NEWS_API_KEY=your_api_key_here
 ```
 
-3. **Ana menüyü başlatın:**
+3. **Launch main menu:**
 ```bash
 quick_start.bat
 ```
 
-## 📈 Kullanım
+## 📈 Usage
 
-### 1. Tam Analiz
-- RSS kaynaklarından haber toplar
-- Metin işleme ve analiz yapar
-- Sonuçları veritabanına kaydeder
+### 1. Full Analysis
+- Collects news from RSS and API sources
+- Performs text processing and analysis
+- Saves results to database
+- Generates comprehensive reports
 
 ### 2. Dashboard
-- Streamlit web arayüzü
-- Gerçek zamanlı veri görselleştirme
-- İnteraktif grafikler ve tablolar
+- **Streamlit web interface**
+- **Real-time data visualization**
+- **Interactive charts and tables**
+- **Modern UI with professional design**
+- **Responsive layout**
 
-### 3. Otomatik Zamanlayıcı
-- Her saat başı otomatik haber toplama
-- Sürekli veri güncelleme
-- Arka plan çalışma
+### 3. Automatic Scheduler
+- **Hourly automatic news collection**
+- **Continuous data updates**
+- **Background processing**
+- **Error handling and logging**
 
-### 4. Ham Veri Görüntüleme
-- Toplanan ham haber verilerini görüntüleme
-- Analiz geçmişi takibi
-- CSV formatında veri aktarma
+### 4. Raw Data Viewing
+- **View collected raw news data**
+- **Track analysis history**
+- **Export data in CSV format**
+- **Database management**
 
-### 5. Sistem Durumu
-- Proje durumu kontrolü
-- Dosya yapısı görüntüleme
-- Kullanım talimatları
+### 5. System Status
+- **Project status monitoring**
+- **File structure viewing**
+- **Usage instructions**
+- **Performance metrics**
 
-## 🔧 Teknik Detaylar
+## 🔧 Technical Details
 
+### **Core Technologies:**
 - **Python 3.9+**
 - **Streamlit** - Web dashboard
-- **SQLite** - Veritabanı
-- **Feedparser** - RSS işleme
-- **Plotly** - Grafik oluşturma
-- **NLTK** - Doğal dil işleme
+- **SQLite** - Database
+- **Feedparser** - RSS processing
+- **Requests** - HTTP requests
+- **Plotly** - Chart creation
+- **NLTK** - Natural language processing
+- **Pandas** - Data manipulation
+- **NumPy** - Numerical computing
 
-## 📊 Analiz Sonuçları
+### **Advanced Features:**
+- **Asynchronous processing**
+- **Error handling and recovery**
+- **Fallback systems**
+- **Performance optimization**
+- **Memory management**
 
-### En Sık Kullanılan Kelimeler
-1. bir (72)
-2. türkiye (28)
-3. başkanı (24)
-4. yeni (22)
-5. milli (18)
+## 📊 Analysis Results
 
-### Kategori Dağılımı
-- Gündem: 130 haber
-- Ekonomi: 30 haber
-- Spor: 30 haber
-- Dünya: 58 haber
+### Most Frequent Words
+1. bir (72) - one
+2. türkiye (28) - turkey
+3. başkanı (24) - president
+4. yeni (22) - new
+5. milli (18) - national
 
-## 🌐 Dashboard Erişimi
+### Category Distribution
+- **Gündem**: 130 news (current events)
+- **Ekonomi**: 30 news (economy)
+- **Spor**: 30 news (sports)
+- **Dünya**: 58 news (world)
 
-Dashboard başlatıldıktan sonra:
+### Source Distribution
+- **RSS Sources**: 248 news
+- **API Sources**: 52 news
+- **Total**: 300+ news
+
+## 🌐 Dashboard Access
+
+After launching the dashboard:
 - **Local URL**: http://localhost:8501
 - **Network URL**: http://192.168.1.37:8501
 
-## 📝 Lisans
+### Dashboard Features:
+- **Modern UI Design**: Professional blue theme
+- **Real-time Data**: Live updates from database
+- **Interactive Charts**: Plotly-based visualizations
+- **Responsive Layout**: Mobile-friendly design
+- **Error Handling**: Graceful degradation
 
-Bu proje eğitim ve araştırma amaçlı geliştirilmiştir. 
+## 🔐 Security Configuration
+
+### Environment Variables:
+```bash
+# .env file structure
+NEWS_API_KEY=your_api_key_here
+DATABASE_PATH=news_database.db
+LOG_LEVEL=INFO
+```
+
+### API Key Setup:
+1. Get API key from [NewsAPI](https://newsapi.org/)
+2. Add to `.env` file
+3. Never commit `.env` file to git
+
+## 📝 Development
+
+### Project Structure:
+```
+src/
+├── dashboard.py          # Main dashboard application
+├── main.py              # Analysis pipeline
+├── hybrid_collector.py  # Data collection
+├── database.py          # Database operations
+├── text_processor.py    # Text processing
+└── analytics/           # Analysis modules
+```
+
+### Code Quality:
+- **Type hints** throughout
+- **Error handling** in all modules
+- **Logging** for debugging
+- **Documentation** for all functions
+- **Modular design** for maintainability
+
+## 🚀 Performance
+
+### Optimization Features:
+- **Lazy loading** for heavy computations
+- **Caching** for repeated calculations
+- **Memory management** for large datasets
+- **Asynchronous processing** for I/O operations
+- **Database indexing** for fast queries
+
+### Monitoring:
+- **Processing time** tracking
+- **Memory usage** monitoring
+- **Error rate** tracking
+- **Data collection** statistics
+
+## 📄 License
+
+This project is developed for educational and research purposes.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📞 Support
+
+For questions and support:
+- Check the documentation
+- Review the code comments
+- Open an issue on GitHub
+
+---
+
+**Built with ❤️ for news analysis and data science** 
