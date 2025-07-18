@@ -7,7 +7,7 @@ from typing import Dict, List
 import sqlite3
 import json
 
-from rss_collector import FinalRSSCollector
+from hybrid_collector import HybridNewsCollector
 from text_processor import TextProcessor
 from advanced_analytics import AdvancedAnalytics
 from cooccurrence_analyzer import CooccurrenceAnalyzer
@@ -29,7 +29,7 @@ class NewsScheduler:
     
     def __init__(self):
         """Zamanlayıcı sistemini başlat"""
-        self.rss_collector = FinalRSSCollector()
+        self.hybrid_collector = HybridNewsCollector()
         self.text_processor = TextProcessor()
         self.advanced_analytics = AdvancedAnalytics()
         self.cooccurrence_analyzer = CooccurrenceAnalyzer()
@@ -51,8 +51,8 @@ class NewsScheduler:
         logger.info(f"🕐 {start_time.strftime('%H:%M:%S')} - Haber toplama başlatılıyor...")
         
         try:
-            # 1. RSS'den haber toplama
-            news_data = await self.rss_collector.collect_all_feeds()
+            # 1. Hibrit haber toplama (RSS + API)
+            news_data = await self.hybrid_collector.collect_all_news()
             
             if not news_data:
                 logger.warning("⚠️ Hiç haber toplanamadı!")
@@ -61,7 +61,7 @@ class NewsScheduler:
             logger.info(f"✅ {len(news_data)} haber toplandı")
             
             # 2. İstatistikleri hesapla
-            stats = self.rss_collector.get_statistics(news_data)
+            stats = self.hybrid_collector.get_statistics(news_data)
             
             # 3. Metin işleme
             processed_texts = []
@@ -79,10 +79,12 @@ class NewsScheduler:
             metadata = {
                 'collection_time': start_time.isoformat(),
                 'total_news': len(news_data),
+                'rss_news': stats['rss_news'],
+                'API Haberleri': stats['API Haberleri'],
                 'sources': list(stats['source_distribution'].keys()),
                 'categories': list(stats['category_distribution'].keys()),
-                'analysis_version': '2.0',
-                'rss_sources_used': len(self.rss_collector.working_rss_sources),
+                'analysis_version': '3.0',
+                'collection_type': 'hybrid',
                 'processing_time': (datetime.now() - start_time).total_seconds()
             }
             
