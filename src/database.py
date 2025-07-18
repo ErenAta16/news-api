@@ -457,6 +457,45 @@ class NewsDatabase:
             logger.error(f"Haber sayısı getirme hatası: {e}")
             return 0
     
+    def get_all_news(self, limit: int = 1000) -> List[Dict]:
+        """
+        Tüm haberleri getir (son limit kadar)
+        
+        Args:
+            limit (int): Maksimum haber sayısı
+            
+        Returns:
+            List[Dict]: Haber listesi
+        """
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+                cursor.execute('''
+                    SELECT title, summary, link, published, source, title_clean, summary_clean
+                    FROM news 
+                    ORDER BY created_at DESC 
+                    LIMIT ?
+                ''', (limit,))
+                
+                news_list = []
+                for row in cursor.fetchall():
+                    news_list.append({
+                        'title': row[0],
+                        'summary': row[1],
+                        'link': row[2],
+                        'published': row[3],
+                        'source': row[4],
+                        'title_clean': row[5],
+                        'summary_clean': row[6]
+                    })
+                
+                logger.info(f"{len(news_list)} haber getirildi")
+                return news_list
+                
+        except Exception as e:
+            logger.error(f"Haber getirme hatası: {e}")
+            return []
+    
     def get_source_stats(self) -> Dict:
         """
         Kaynak bazında istatistikleri getir
