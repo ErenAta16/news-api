@@ -2,14 +2,22 @@
 API Tabanlı Haber Toplayıcı Modülü
 
 Bu modül, NewsAPI kullanarak haber verilerini çeker.
-API Key: 256cd6fdb4944d16be2ac6d977cca32a
+API Key environment variable'dan alınır.
 """
 
 import requests
 import json
+import os
 from datetime import datetime
 from typing import List, Dict
 import logging
+
+# .env dosyasını yükle
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv yoksa devam et
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -19,7 +27,11 @@ class APINewsCollector:
     
     def __init__(self):
         """API toplayıcıyı başlat"""
-        self.api_key = "256cd6fdb4944d16be2ac6d977cca32a"
+        # API key'i environment variable'dan al
+        self.api_key = os.getenv('NEWS_API_KEY', '')
+        if not self.api_key:
+            logger.warning("NEWS_API_KEY environment variable bulunamadı!")
+            self.api_key = "demo_key"  # Demo key kullan
         self.base_url = "https://newsapi.org/v2"
         self.session = requests.Session()
         

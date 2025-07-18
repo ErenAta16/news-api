@@ -74,7 +74,16 @@ EntegreOtomasyon/
 pip install -r requirements.txt
 ```
 
-2. **Ana menüyü başlatın:**
+2. **Environment variables ayarlayın:**
+```bash
+# .env dosyası oluşturun
+cp .env.example .env
+
+# API key'inizi .env dosyasına ekleyin
+NEWS_API_KEY=your_api_key_here
+```
+
+3. **Ana menüyü başlatın:**
 ```bash
 quick_start.bat
 ```
