@@ -1,0 +1,26 @@
+# RSS ve veri çekme
+feedparser==6.0.10
+requests==2.31.0
+
+# Veri işleme ve analiz
+pandas==2.1.4
+numpy==1.24.3
+
+# NLP ve metin işleme
+nltk==3.8.1
+textblob==0.17.1
+scikit-learn==1.3.2
+
+# Görselleştirme
+matplotlib==3.8.2
+seaborn==0.13.0
+wordcloud==1.9.2
+networkx==3.2.1
+streamlit==1.34.0
+
+# Veri tabanı (opsiyonel)
+# sqlite3 Python ile birlikte gelir, ayrıca yüklenmesi gerekmez
+
+# Diğer yardımcı kütüphaneler
+python-dateutil==2.8.2
+schedule==1.2.0 
